@@ -1,0 +1,30 @@
+#Title {
+    text-align: center;
+}
+
+#SubTitle {
+    margin-bottom: 4%;
+}
+
+p {
+    margin-bottom: 2%;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.location,
+.location-key,
+.location-weather {
+    padding: 1%;
+    text-align: center;
+}
+
+.btn {
+    background-color: #fff;
+    border: 1px solid #000000;
+    border-radius: 4px;
+    padding: 4%;
+}
