@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import dotenv from 'dotenv';
 import './Home.css';
 
 export default function Home() {
+    dotenv.config();
     const [location, setLocation] = useState(null);
     const [location_key, setLocationKey] = useState(null);
     const [weather, setWeather] = useState(null);
