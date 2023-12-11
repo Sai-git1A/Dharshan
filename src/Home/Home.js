@@ -8,12 +8,12 @@ export default function Home() {
     const [weather, setWeather] = useState(null);
 
     const fetchLocationKey = async (location) => {
-        const resLocationKey = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=1Cv8agAe9H9x4KLfaeYAeijByAHY8Gd5&q=${location.lat},${location.lon}`)
+        const resLocationKey = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.WEATHER_KEY}&q=${location.lat},${location.lon}`)
         setLocationKey(resLocationKey.data);
     }
 
     const fetchWeather = async (location_key) => {
-        const resWeather = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${location_key}?apikey=1Cv8agAe9H9x4KLfaeYAeijByAHY8Gd5&details=true`)
+        const resWeather = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${location_key}?apikey=${process.env.WEATHER_KEY}&details=true`)
         setWeather(resWeather.data);
         console.log(resWeather.data[0]);
     }
