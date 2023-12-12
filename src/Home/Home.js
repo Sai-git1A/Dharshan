@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import dotenv from 'dotenv';
 import './Home.css';
 
 export default function Home() {
-    dotenv.config();
     const [location, setLocation] = useState(null);
     const [location_key, setLocationKey] = useState(null);
     const [weather, setWeather] = useState(null);
 
     const fetchLocationKey = async (location) => {
-        const resLocationKey = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.WEATHER_KEY}&q=${location.lat},${location.lon}`)
+        const resLocationKey = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_WEATHER_KEY}&q=${location.lat},${location.lon}`)
         setLocationKey(resLocationKey.data);
     }
 
     const fetchWeather = async (location_key) => {
-        const resWeather = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${location_key}?apikey=${process.env.WEATHER_KEY}&details=true`)
+        const resWeather = await axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${location_key}?apikey=${process.env.REACT_APP_WEATHER_KEY}&details=true`)
         setWeather(resWeather.data);
         console.log(resWeather.data[0]);
     }
