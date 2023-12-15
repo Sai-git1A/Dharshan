@@ -1,0 +1,170 @@
+[
+    {
+        "id": 1,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/01.png"
+    },
+    {
+        "id": 2,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/02.png"
+    },
+    {
+        "id": 3,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/03.png"
+    },
+    {
+        "id": 4,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/04.png"
+    },
+    {
+        "id": 5,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/05.png"
+    },
+    {
+        "id": 6,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/06.png"
+    },
+    {
+        "id": 7,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/07.png"
+    },
+    {
+        "id": 8,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/08.png"
+    },
+    {
+        "id": 9,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/09.png"
+    },
+    {
+        "id": 10,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/10.png"
+    },
+    {
+        "id": 11,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/11.png"
+    },
+    {
+        "id": 12,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/12.png"
+    },
+    {
+        "id": 13,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/13.png"
+    },
+    {
+        "id": 14,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/14.png"
+    },
+    {
+        "id": 15,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/15.png"
+    },
+    {
+        "id": 16,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/16.png"
+    },
+    {
+        "id": 17,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/17.png"
+    },
+    {
+        "id": 18,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/18.png"
+    },
+    {
+        "id": 19,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/19.png"
+    },
+    {
+        "id": 20,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/20.png"
+    },
+    {
+        "id": 21,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/21.png"
+    },
+    {
+        "id": 22,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/22.png"
+    },
+    {
+        "id": 23,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/23.png"
+    },
+    {
+        "id": 24,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/24.png"
+    },
+    {
+        "id": 25,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/25.png"
+    },
+    {
+        "id": 26,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/26.png"
+    },
+    {
+        "id": 29,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/29.png"
+    },
+    {
+        "id": 30,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/30.png"
+    },
+    {
+        "id": 31,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/31.png"
+    },
+    {
+        "id": 32,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/32.png"
+    },
+    {
+        "id": 33,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/33.png"
+    },
+    {
+        "id": 34,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/34.png"
+    },
+    {
+        "id": 35,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/35.png"
+    },
+    {
+        "id": 36,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/36.png"
+    },
+    {
+        "id": 37,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/37.png"
+    },
+    {
+        "id": 38,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/38.png"
+    },
+    {
+        "id": 39,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/39.png"
+    },
+    {
+        "id": 40,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/40.png"
+    },
+    {
+        "id": 41,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/41.png"
+    },
+    {
+        "id": 42,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/42.png"
+    },
+    {
+        "id": 43,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/43.png"
+    },
+    {
+        "id": 44,
+        "icon": "https://res.cloudinary.com/safedb/image/upload/v1702612918/Weather/44.png"
+    }
+]

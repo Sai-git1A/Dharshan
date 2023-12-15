@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/joy/CircularProgress';
+import data from '../Icons.json';
 import './Home.css';
 
 export default function Home() {
+    const icons = data;
     const [loading, setLoading] = useState(false);
     const [location, setLocation] = useState(null);
     const [location_key, setLocationKey] = useState(null);
@@ -58,21 +60,46 @@ export default function Home() {
         </>}
         {weather && <div className='location-weather'>
             <h2 id='SubTitle' className='home-subtitle'>Current Condition</h2>
-            <p>WeatherIcon: {weather[0].WeatherIcon}</p>
-            <p>WeatherText: {weather[0].WeatherText}</p>
-            <p>Temperature: {weather[0].Temperature.Metric.Value} C</p>
-            <p>Wind: {weather[0].Wind.Speed.Metric.Value} km/h</p>
-            <p>Pressure: {weather[0].Pressure.Metric.Value} mb</p>
-            <p>Humidity: {weather[0].RelativeHumidity} %</p>
-            <p>Visibility: {weather[0].Visibility.Metric.Value}</p>
-            <p>CloudCover: {weather[0].CloudCover}</p>
-            <p>UVIndex: {weather[0].UVIndex}</p>
-            <p>UVIndexText: {weather[0].UVIndexText}</p>
-            <p>WindGust: {weather[0].WindGust.Speed.Metric.Value} km/h</p>
-            <p>WindDirection: {weather[0].Wind.Direction.Degrees} {weather[0].Wind.Direction.English}</p>
-            <p>RealFeelTemperature: {weather[0].RealFeelTemperature.Metric.Value}</p>
+            <div className='weather-icon-temp-text'>
+                {icons && icons.map(item => weather[0].WeatherIcon === item.id && <img className='weather-icon' src={item.icon} alt='Weather IMG'/>)}
+                <p className='temp'>{weather[0].Temperature.Metric.Value}&deg;C</p>
+                <p className='status'>{weather[0].WeatherText}</p>
+            </div>
+            <div className='weather-details'>
+                <div className='weather-real-feel'>
+                    <span>Real feel</span>
+                    <p className='real-feel'>{weather[0].RealFeelTemperature.Metric.Value}&deg;C</p>
+                </div>
+                <div className='weather-wind'>
+                    <span>Wind</span>
+                    <p className='wind'>{weather[0].Wind.Speed.Metric.Value}km/hr {weather[0].Wind.Direction.Degrees}&deg; {weather[0].Wind.Direction.English}</p>
+                </div>
+                <div className='weather-humidity'>
+                    <span>Humidity</span>
+                    <p className='humidity'>{weather[0].RelativeHumidity}%</p>
+                </div>
+                <div className='weather-pressure'>
+                    <span>Pressure</span>
+                    <p className='pressure'>{weather[0].Pressure.Metric.Value}mbar</p>
+                </div>
+                <div className='weather-visibility'>
+                    <span>Visibility</span>
+                    <p className='visibility'>{weather[0].Visibility.Metric.Value}km</p>
+                </div>
+                <div className='weather-uv-index'>
+                    <span>UV Index</span>
+                    <p className='uv-index'>{weather[0].UVIndex} {weather[0].UVIndexText}</p>
+                </div>
+                <div className='weather-cloud-cover'>
+                    <span>Cloud cover</span>
+                    <p className='cloud-cover'>{weather[0].CloudCover}oktas</p>
+                </div>
+                <div className='weather-dew-point'>
+                    <span>Dew point</span>
+                    <p className='dew-point'>{weather[0].DewPoint.Metric.Value}</p>
+                </div>
+            </div>
             <p>PrecipitationType: {weather[0].PrecipitationType}</p>
-            <p>DewPoint: {weather[0].DewPoint.Metric.Value}</p>
             <p>IsDayTime: {weather[0].IsDayTime ? 'Light' : 'Night'}</p>
         </div>}
         </div>

@@ -33,3 +33,58 @@ p {
     padding: 4%;
     width: 200px;
 }
+
+.weather-icon-temp-text {
+    background-color: #6DB9EF;
+    border-radius: 8px;
+    padding: 1%;
+    margin-bottom: 4%;
+}
+
+.weather-icon {
+    float: left;
+}
+
+.temp {
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.status {
+    color: #fff;
+    font-size: 0.8rem;
+}
+
+.weather-details {
+    background-color: #6DB9EF;
+    border-radius: 8px;
+}
+
+.weather-details div {
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 4%;
+    padding: 0 2%;
+    position: relative;
+}
+
+.weather-details div:first-child {
+    padding-top: 4%;
+}
+
+.weather-details div:last-child {
+    border-bottom: none;
+}
+
+.weather-details div span {
+    color: #fff;
+    font-size: 0.8rem;
+    position: absolute;
+}
+
+.weather-details div p {
+    color: #fff;
+    display: inline-block;
+    font-size: 1rem;
+    text-align: right;
+    width: 100%;
+}
