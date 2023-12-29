@@ -25,6 +25,10 @@ p {
     text-align: center;
 }
 
+.location-weather {
+    width: 50dvw;
+}
+
 .btn {
     background-color: #fff;
     border: 1px solid #000000;
@@ -87,4 +91,10 @@ p {
     font-size: 1rem;
     text-align: right;
     width: 100%;
+}
+
+@media only screen and (max-width: 1000px) {
+    .location-weather {
+        width: 80dvw;
+    }
 }

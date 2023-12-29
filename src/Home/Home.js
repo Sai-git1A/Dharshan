@@ -92,7 +92,7 @@ export default function Home() {
                 </div>
                 <div className='weather-cloud-cover'>
                     <span>Cloud cover</span>
-                    <p className='cloud-cover'>{weather[0].CloudCover}oktas</p>
+                    <p className='cloud-cover'>{weather[0].CloudCover} oktas</p>
                 </div>
                 <div className='weather-dew-point'>
                     <span>Dew point</span>
