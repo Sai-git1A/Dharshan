@@ -17,6 +17,12 @@ p {
     height: 100dvh;
 }
 
+.circular-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .location,
 .location-details,
 .location-key,

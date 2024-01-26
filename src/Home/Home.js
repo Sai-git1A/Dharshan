@@ -7,43 +7,41 @@ import './Home.css';
 export default function Home() {
     const icons = data;
     const [loading, setLoading] = useState(false);
-    const [location, setLocation] = useState(null);
-    const [location_key, setLocationKey] = useState(null);
+    // const [location, setLocation] = useState(null);
+    // const [location_key, setLocationKey] = useState(null);
     const [weather, setWeather] = useState(null);
 
     const fetchLocationKey = async (location) => {
-        setLoading(!loading);
         const resLocationKey = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_WEATHER_KEY}&q=${location.lat},${location.lon}`)
-        setLocationKey(resLocationKey.data);
+        // setLocationKey(resLocationKey.data);
+        fetchWeather(resLocationKey.data.Key);
         setLoading(false);
     }
 
     const fetchWeather = async (location_key) => {
-        setLoading(!loading);
         const resWeather = await axios.get(`https://dataservice.accuweather.com/currentconditions/v1/${location_key}?apikey=${process.env.REACT_APP_WEATHER_KEY}&details=true`)
         setWeather(resWeather.data);
-        setLoading(false);
     }
 
     const getLocation = () => {
         setLoading(!loading);
         navigator.geolocation.getCurrentPosition(position => {
-            setLocation({lat:position.coords.latitude, lon:position.coords.longitude});
+            // setLocation({lat:position.coords.latitude, lon:position.coords.longitude});
+            fetchLocationKey({lat:position.coords.latitude, lon:position.coords.longitude});
         });
-        setLoading(false);
     }
 
     useEffect(() => {
-        fetch(`https://filemoonapi.com/api/file/list?key=${process.env.REACT_APP_FILES_KEY}`)
-        .then(res => res.json())
-        .then(data => console.log(data.result.files));
+        getLocation();
     }, []);
 
     return (
         <>
-        <h1 id='Title' className='home-title'>Weather</h1>
         <div className='main'>
-        {location ? '' : <div className='location'><button className='btn get-location' onClick={getLocation}>{loading ? <><CircularProgress color="neutral" variant="soft" size="sm" /> <span>Getting Location...</span></> : 'Get Location'}</button></div>}
+        {loading ? <div className='circular-progress'>
+        <CircularProgress color="neutral" variant="soft" size="lg" /> <span>Getting Weather Details...</span>
+        </div> : ''}
+        {/* {location ? '' : <div className='location'><button className='btn get-location' onClick={() => getLocation()}>{loading ? <><CircularProgress color="neutral" variant="soft" size="sm" /> <span>Getting Location...</span></> : 'Get Location'}</button></div>}
         {location_key ? '' : <>
         {location && <div className='location-details'>
             <h2 id='SubTitle' className='home-subtitle'>Geo Position</h2>
@@ -63,7 +61,7 @@ export default function Home() {
             <p>Continent: {location_key.Region.LocalizedName} {location_key.Region.ID}</p>
             <button className='btn get-weather' onClick={() => fetchWeather(location_key.Key)}>{loading ? <><CircularProgress color="neutral" variant="soft" size="sm" /> <span>Getting Weather...</span></> : 'Get Weather'}</button>
         </div>}
-        </>}
+        </>} */}
         {weather && <div className='location-weather'>
             <h2 id='SubTitle' className='home-subtitle'>Current Condition</h2>
             <div className='weather-icon-temp-text'>
@@ -104,9 +102,12 @@ export default function Home() {
                     <span>Dew point</span>
                     <p className='dew-point'>{weather[0].DewPoint.Metric.Value}</p>
                 </div>
+                <div className='weather-is-day-time'>
+                    <span>Light or Night</span>
+                    <p className='is-day-time'>{weather[0].IsDayTime ? 'Light' : 'Night'}</p>
+                </div>
             </div>
-            <p>PrecipitationType: {weather[0].PrecipitationType}</p>
-            <p>IsDayTime: {weather[0].IsDayTime ? 'Light' : 'Night'}</p>
+            {/* <p>PrecipitationType: {weather[0].PrecipitationType}</p> */}
         </div>}
         </div>
         </>
