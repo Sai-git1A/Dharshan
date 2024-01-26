@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/joy/CircularProgress';
 import data from '../Icons.json';
@@ -31,10 +31,6 @@ export default function Home() {
         });
     }
 
-    useEffect(() => {
-        getLocation();
-    }, []);
-
     return (
         <>
         <div className='main'>
@@ -62,6 +58,9 @@ export default function Home() {
             <button className='btn get-weather' onClick={() => fetchWeather(location_key.Key)}>{loading ? <><CircularProgress color="neutral" variant="soft" size="sm" /> <span>Getting Weather...</span></> : 'Get Weather'}</button>
         </div>}
         </>} */}
+        {loading ? '' : <>
+        {weather ? '' : <button className='btn get-weather' onClick={() => getLocation()}>Get Weather</button>
+        }</>}
         {weather && <div className='location-weather'>
             <h2 id='SubTitle' className='home-subtitle'>Current Condition</h2>
             <div className='weather-icon-temp-text'>
