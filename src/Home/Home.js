@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/joy/CircularProgress';
 import data from '../Icons.json';
@@ -33,6 +33,12 @@ export default function Home() {
         setLoading(false);
     }
 
+    useEffect(() => {
+        fetch(`https://filemoonapi.com/api/file/list?key=${process.env.REACT_APP_FILES_KEY}`)
+        .then(res => res.json())
+        .then(data => console.log(data.result.files));
+    }, []);
+
     return (
         <>
         <h1 id='Title' className='home-title'>Weather</h1>
@@ -61,7 +67,7 @@ export default function Home() {
         {weather && <div className='location-weather'>
             <h2 id='SubTitle' className='home-subtitle'>Current Condition</h2>
             <div className='weather-icon-temp-text'>
-                {icons && icons.map(item => weather[0].WeatherIcon === item.id && <img className='weather-icon' src={item.icon} alt='Weather IMG'/>)}
+                {icons && icons.map(item => weather[0].WeatherIcon === item.id && <img key={item.id} className='weather-icon' src={item.icon} alt='Weather IMG'/>)}
                 <p className='temp'>{weather[0].Temperature.Metric.Value}&deg;C</p>
                 <p className='status'>{weather[0].WeatherText}</p>
             </div>
