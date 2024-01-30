@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CircularProgress from '@mui/joy/CircularProgress';
 import data from '../Icons.json';
@@ -7,13 +7,36 @@ import './Home.css';
 export default function Home() {
     const icons = data;
     const [loading, setLoading] = useState(false);
-    // const [location, setLocation] = useState(null);
-    // const [location_key, setLocationKey] = useState(null);
     const [weather, setWeather] = useState(null);
+    const birthDate = new Date('2002-09-15'); 
+
+    const calculateElapsedTime = (birthDate) => {
+        const now = new Date();
+        const timeDifference = now - birthDate;
+      
+        const years = now.getFullYear() - birthDate.getFullYear();
+        const months = now.getMonth() - birthDate.getMonth();
+        const weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      
+        return { years, months, weeks, days, hours, minutes, seconds };
+    };
+
+    const [elapsedTime, setElapsedTime] = useState(calculateElapsedTime(birthDate));
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+          setElapsedTime(calculateElapsedTime(birthDate));
+        }, 1000);
+  
+        return () => clearInterval(intervalId);
+    }, [birthDate]);
 
     const fetchLocationKey = async (location) => {
         const resLocationKey = await axios.get(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_WEATHER_KEY}&q=${location.lat},${location.lon}`)
-        // setLocationKey(resLocationKey.data);
         fetchWeather(resLocationKey.data.Key);
         setLoading(false);
     }
@@ -26,7 +49,6 @@ export default function Home() {
     const getLocation = () => {
         setLoading(!loading);
         navigator.geolocation.getCurrentPosition(position => {
-            // setLocation({lat:position.coords.latitude, lon:position.coords.longitude});
             fetchLocationKey({lat:position.coords.latitude, lon:position.coords.longitude});
         });
     }
@@ -37,32 +59,11 @@ export default function Home() {
         {loading ? <div className='circular-progress'>
         <CircularProgress color="neutral" variant="soft" size="lg" /> <span>Getting Weather Details...</span>
         </div> : ''}
-        {/* {location ? '' : <div className='location'><button className='btn get-location' onClick={() => getLocation()}>{loading ? <><CircularProgress color="neutral" variant="soft" size="sm" /> <span>Getting Location...</span></> : 'Get Location'}</button></div>}
-        {location_key ? '' : <>
-        {location && <div className='location-details'>
-            <h2 id='SubTitle' className='home-subtitle'>Geo Position</h2>
-            <p>Latitude: {location.lat}</p>
-            <p>Longitude: {location.lon}</p>
-            <button className='btn get-location-details' onClick={() => fetchLocationKey(location)}>{loading ? <><CircularProgress color="neutral" variant="soft" size="sm" /> <span>Getting Location Details...</span></> : 'Get Location Details'}</button>
-        </div>}
-        </>}
-        {weather ? '' : <>
-        {location_key && <div className='location-key'>
-            <h2 id='SubTitle' className='home-subtitle'>Location Details</h2>
-            <p>Name: {location_key.LocalizedName}</p>
-            <p>Dist: {location_key.SupplementalAdminAreas[0].LocalizedName}</p>
-            <p>State: {location_key.AdministrativeArea.LocalizedName} {location_key.AdministrativeArea.ID}</p>
-            <p>Country: {location_key.Country.LocalizedName} {location_key.Country.ID}</p>
-            <p>TimeZone: {location_key.TimeZone.Code} {location_key.TimeZone.Name} {location_key.TimeZone.GmtOffset}</p>
-            <p>Continent: {location_key.Region.LocalizedName} {location_key.Region.ID}</p>
-            <button className='btn get-weather' onClick={() => fetchWeather(location_key.Key)}>{loading ? <><CircularProgress color="neutral" variant="soft" size="sm" /> <span>Getting Weather...</span></> : 'Get Weather'}</button>
-        </div>}
-        </>} */}
         {loading ? '' : <>
         {weather ? '' : <button className='btn get-weather' onClick={() => getLocation()}>Get Weather</button>
         }</>}
         {weather && <div className='location-weather'>
-            <h2 id='SubTitle' className='home-subtitle'>Current Condition</h2>
+            <h2 id='SubTitle' className='home-subtitle'>ప్రస్తుత వాతావరణం</h2>
             <div className='weather-icon-temp-text'>
                 {icons && icons.map(item => weather[0].WeatherIcon === item.id && <img key={item.id} className='weather-icon' src={item.icon} alt='Weather IMG'/>)}
                 <p className='temp'>{weather[0].Temperature.Metric.Value}&deg;C</p>
@@ -106,8 +107,20 @@ export default function Home() {
                     <p className='is-day-time'>{weather[0].IsDayTime ? 'Light' : 'Night'}</p>
                 </div>
             </div>
-            {/* <p>PrecipitationType: {weather[0].PrecipitationType}</p> */}
         </div>}
+        <div className='గడిచిన-సమయము'>
+           <h1 id='Title'>గడిచి వెళ్తున్న సమయము</h1>
+           <p>{elapsedTime.years} years, {elapsedTime.months} months, {elapsedTime.weeks} weeks, {elapsedTime.days} days, {elapsedTime.hours} hours, {elapsedTime.minutes} minutes, {elapsedTime.seconds} seconds</p>
+           <div className='సమయము'>
+            <div className='సంవసరాలు'>{elapsedTime.years}</div>
+            <div className='నెలలు'>{elapsedTime.months}</div>
+            <div className='వారాలు'>{elapsedTime.weeks}</div>
+            <div className='రోజులు'>{elapsedTime.days}</div>
+            <div className='గంటలు'>{elapsedTime.hours}</div>
+            <div className='నిమిషములు'>{elapsedTime.minutes}</div>
+            <div className='క్షణాలు'>{elapsedTime.seconds}</div>
+           </div>
+        </div>
         </div>
         </>
     )

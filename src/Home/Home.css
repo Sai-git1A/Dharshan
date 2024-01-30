@@ -13,8 +13,7 @@ p {
 .main {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 100dvh;
 }
 
@@ -24,16 +23,16 @@ p {
     justify-content: center;
 }
 
-.location,
-.location-details,
-.location-key,
 .location-weather {
-    padding: 1%;
+    padding: 0 1%;
     text-align: center;
+    width: 16dvw;
 }
 
-.location-weather {
-    width: 50dvw;
+.గడిచిన-సమయము {
+    height: 100%;
+    padding: 1%;
+    width: 78dvw;
 }
 
 .btn {
@@ -102,6 +101,20 @@ p {
 }
 
 @media only screen and (max-width: 1000px) {
+    .main {
+        justify-content: center;
+    }
+
+    .location-weather {
+        width: 50dvw;
+    }
+
+    .గడిచిన-సమయము {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
     .location-weather {
         width: 80dvw;
     }
