@@ -35,6 +35,36 @@ p {
     width: 78dvw;
 }
 
+.సమయము {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2%;
+}
+
+.సమయము div {
+    background-color: #6DB9EF;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 2rem;
+    height: 50px;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    padding: 2%;
+    position: relative;
+    text-align: center;
+    width: 20%;
+}
+
+.సమయము div span {
+    font-size: 1rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
 .btn {
     background-color: #fff;
     border: 1px solid #000000;
@@ -115,7 +145,25 @@ p {
 }
 
 @media only screen and (max-width: 500px) {
+    #Title {
+        font-size: 1.5rem;
+    }
+
     .location-weather {
         width: 80dvw;
+    }
+
+    .సమయము {
+        flex-direction: column;
+    }
+
+    .సమయము div {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .సమయము {
+        flex-direction: column;
     }
 }

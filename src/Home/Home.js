@@ -57,7 +57,7 @@ export default function Home() {
         <>
         <div className='main'>
         {loading ? <div className='circular-progress'>
-        <CircularProgress color="neutral" variant="soft" size="lg" /> <span>Getting Weather Details...</span>
+        <CircularProgress variant="soft" size="lg" /> <span>Getting Weather Details...</span>
         </div> : ''}
         {loading ? '' : <>
         {weather ? '' : <button className='btn get-weather' onClick={() => getLocation()}>Get Weather</button>
@@ -110,15 +110,29 @@ export default function Home() {
         </div>}
         <div className='గడిచిన-సమయము'>
            <h1 id='Title'>గడిచి వెళ్తున్న సమయము</h1>
-           <p>{elapsedTime.years} years, {elapsedTime.months} months, {elapsedTime.weeks} weeks, {elapsedTime.days} days, {elapsedTime.hours} hours, {elapsedTime.minutes} minutes, {elapsedTime.seconds} seconds</p>
+           {/* <p>{elapsedTime.years} years, {elapsedTime.months} months, {elapsedTime.weeks} weeks, {elapsedTime.days} days, {elapsedTime.hours} hours, {elapsedTime.minutes} minutes, {elapsedTime.seconds} seconds</p> */}
            <div className='సమయము'>
-            <div className='సంవసరాలు'>{elapsedTime.years}</div>
-            <div className='నెలలు'>{elapsedTime.months}</div>
-            <div className='వారాలు'>{elapsedTime.weeks}</div>
-            <div className='రోజులు'>{elapsedTime.days}</div>
-            <div className='గంటలు'>{elapsedTime.hours}</div>
-            <div className='నిమిషములు'>{elapsedTime.minutes}</div>
-            <div className='క్షణాలు'>{elapsedTime.seconds}</div>
+            <div className='సంవసరాలు'>{elapsedTime.years}
+            <span>సంవసరాలు</span>
+            </div>
+            <div className='నెలలు'>{elapsedTime.months}
+            <span>నెలలు</span> 
+            </div>
+            <div className='వారాలు'>{elapsedTime.weeks}
+            <span>వారాలు</span>
+            </div>
+            <div className='రోజులు'>{elapsedTime.days}
+            <span>రోజులు</span>
+            </div>
+            <div className='గంటలు'>{elapsedTime.hours}
+            <span>గంటలు</span>
+            </div>
+            <div className='నిమిషాలు'>{elapsedTime.minutes}
+            <span>నిమిషాలు</span>
+            </div>
+            <div className='క్షణాలు'>{elapsedTime.seconds}
+            <span>క్షణాలు</span>
+            </div>
            </div>
         </div>
         </div>
