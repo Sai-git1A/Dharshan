@@ -3,8 +3,10 @@ import axios from 'axios';
 import CircularProgress from '@mui/joy/CircularProgress';
 import data from '../Icons.json';
 import './Home.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+    const navigate = useNavigate();
     const icons = data;
     const [loading, setLoading] = useState(false);
     const [weather, setWeather] = useState(null);
@@ -136,6 +138,10 @@ export default function Home() {
            </div>
         </div>
         </div>
+        <footer>
+            <button className='చిత్రాలు' onClick={() => navigate('/images')}>చిత్రాలు</button>
+            <button className='వీడియోలు' onClick={() => alert('వీడియోలు')}>వీడియోలు</button>
+        </footer>
         </>
     )
 }
