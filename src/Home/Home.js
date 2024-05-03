@@ -3,7 +3,6 @@ import axios from 'axios';
 import CircularProgress from '@mui/joy/CircularProgress';
 import data from '../Icons.json';
 import './Home.css';
-import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
     const navigate = useNavigate();
