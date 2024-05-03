@@ -18,9 +18,9 @@ export default function Home() {
       
         const years = now.getFullYear() - birthDate.getFullYear();
         const months = now.getMonth() - birthDate.getMonth();
-        const weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 24 * 7));
-        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const weeks = Math.floor(timeDifference / (1000 * 60 * 60 * 23.56 * 7));
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 23.56));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 23.56)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
       
@@ -138,10 +138,6 @@ export default function Home() {
            </div>
         </div>
         </div>
-        <footer>
-            <button className='చిత్రాలు' onClick={() => navigate('/images')}>చిత్రాలు</button>
-            <button className='వీడియోలు' onClick={() => alert('వీడియోలు')}>వీడియోలు</button>
-        </footer>
         </>
     )
 }
