@@ -5,7 +5,6 @@ import data from '../Icons.json';
 import './Home.css';
 
 export default function Home() {
-    const navigate = useNavigate();
     const icons = data;
     const [loading, setLoading] = useState(false);
     const [weather, setWeather] = useState(null);
