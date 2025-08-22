@@ -136,7 +136,7 @@ export default function Home() {
            </div>
         </div>
         <div className='సౌర-మండలం'>
-            <button className='సౌర-మండలం-btn' onClick={() => window.open('./SolarSystem.html, _blank')}>సౌర మండలం</button>
+            <button className='సౌర-మండలం-btn' onClick={() => window.open('./SolarSystem.html', '_blank')}>సౌర మండలం</button>
         </div>
         </div>
         </>
