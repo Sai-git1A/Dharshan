@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>2D Solar System</title>
+<style>
+  body {
+    margin: 0;
+    background: black;
+    color: white;
+    font-family: sans-serif;
+    overflow: hidden;
+  }
+  #ui {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    background: rgba(0,0,0,0.5);
+    padding: 10px;
+    border-radius: 8px;
+  }
+  canvas { display: block; }
+</style>
+</head>
+<body>
+<div id="ui">
+  <h2>🌍 Solar System</h2>
+  <label>Pick Date/Time: 
+    <input type="datetime-local" id="datetime">
+  </label>
+  <button id="setTime">Set Time</button>
+  <button id="resetTime">Reset to Now</button>
+</div>
+<canvas id="canvas"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+resize();
+window.addEventListener("resize", resize);
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+// Orbital periods in Earth days & approximate radii (scaled)
+const planets = [
+  { name:"Mercury", color:"gray", period:87.97, radius:40 },
+  { name:"Venus",   color:"khaki", period:224.70, radius:70 },
+  { name:"Earth",   color:"deepskyblue", period:365.26, radius:100 },
+  { name:"Mars",    color:"orangered", period:686.98, radius:150 },
+  { name:"Jupiter", color:"peru", period:4332.59, radius:220 },
+  { name:"Saturn",  color:"goldenrod", period:10759.22, radius:300 },
+  { name:"Uranus",  color:"lightseagreen", period:30688.5, radius:380 },
+  { name:"Neptune", color:"blue", period:60182, radius:450 }
+];
+
+const dayMs = 86400000;
+const J2000 = new Date("2000-01-01T12:00:00Z").getTime();
+
+let timeOffsetMs = 0;  // offset from system time
+document.getElementById("setTime").onclick = () => {
+  const input = document.getElementById("datetime").value;
+  if(input) {
+    const chosen = new Date(input).getTime();
+    timeOffsetMs = chosen - Date.now();
+  }
+};
+document.getElementById("resetTime").onclick = () => {
+  timeOffsetMs = 0;
+};
+
+// Zoom and Pan
+let zoom = 1;
+let panX = 0, panY = 0;
+canvas.addEventListener("wheel", e => {
+  e.preventDefault();
+  zoom *= e.deltaY > 0 ? 0.9 : 1.1;
+});
+let dragging = false, lastX=0,lastY=0;
+canvas.addEventListener("mousedown", e => {
+  dragging = true; lastX=e.clientX; lastY=e.clientY;
+});
+canvas.addEventListener("mouseup", ()=> dragging=false);
+canvas.addEventListener("mousemove", e => {
+  if(dragging){
+    panX += (e.clientX - lastX);
+    panY += (e.clientY - lastY);
+    lastX = e.clientX; lastY = e.clientY;
+  }
+});
+
+function draw() {
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+
+  const now = Date.now() + timeOffsetMs;
+  const daysSinceJ2000 = (now - J2000) / dayMs;
+
+  ctx.save();
+  ctx.translate(canvas.width/2 + panX, canvas.height/2 + panY);
+  ctx.scale(zoom, zoom);
+
+  // Sun
+  ctx.beginPath();
+  ctx.arc(0,0,20,0,Math.PI*2);
+  ctx.fillStyle="yellow";
+  ctx.fill();
+
+  // Orbits + Planets
+  planets.forEach(p=>{
+    // Orbit
+    ctx.beginPath();
+    ctx.arc(0,0,p.radius,0,Math.PI*2);
+    ctx.strokeStyle="rgba(255,255,255,0.2)";
+    ctx.stroke();
+
+    // Angle based on orbital period
+    const angle = 2*Math.PI * (daysSinceJ2000 / p.period % 1);
+    const x = Math.cos(angle) * p.radius;
+    const y = Math.sin(angle) * p.radius;
+
+    // Planet
+    ctx.beginPath();
+    ctx.arc(x,y,6,0,Math.PI*2);
+    ctx.fillStyle=p.color;
+    ctx.fill();
+
+    // Label
+    ctx.fillStyle="white";
+    ctx.font="12px sans-serif";
+    ctx.fillText(p.name, x+10, y+4);
+  });
+
+  ctx.restore();
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
